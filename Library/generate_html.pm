@@ -9,10 +9,13 @@ sub create_points
     my $i = 0;
     foreach my $item( @$food_truck_data ) 
     { 
-        #to exclude some weird points
+        # to exclude some weird points
         if($item->{latitude} != 0)
         {
+            # to show the pop-up
             my $content = create_content($item->{applicant},$item->{address},$item->{fooditems},$item->{dayshours});
+            
+            #array javascript
             $string .= '["'.$item->{applicant}.'",'.$item->{latitude}.','.$item->{longitude}.','.$i.',"'.$item->{facilitytype}.'","'.$content.'"],'."\n";
             $i +=1;
         }
@@ -32,6 +35,7 @@ sub create_content
     $content .= "<div id='bodyContent'>";
     $content .= "<h2><b>Adress</h2>".$address."</b><br>";
     
+    # some points dont have the food items attribute
     if ($fooditems)
     {
         $fooditems =~ s/:/,/g;
@@ -43,7 +47,7 @@ sub create_content
 
     $content .= "<h2><b>Type of Food </b></h2>".$fooditems."<br>";
     
-    
+    # some points dont have the day hours attribute
     if(!$dayshours)
     {
         $dayshours = "Not Informed";
