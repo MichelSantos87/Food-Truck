@@ -15,6 +15,6 @@ use generate_html;
 ####################
 
 my $foo_truck_data = api_data::get_data();
-my $html_map = generate_html::create_map($foo_truck_data);
-generate_html::print_html($html_map);
-
+my $map_points = generate_html::create_points($foo_truck_data);
+generate_html::print_html($map_points);
+ 
